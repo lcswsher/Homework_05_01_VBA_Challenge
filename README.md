@@ -1,2 +1,8 @@
 # Homework_05_01_VBA_Challenge
 VBA_Challenge_Data_Analysis
+Added 3 work files to git repository
+Deleted alphabetical testing file
+Deleted mulitple year stock data.xlsm
+Delete VBA Homework.xlsx
+Deleted excel files not needed for homework submission
+Mergeded origin main and origin head also also added Last Row Calculation, Dim, and Columns
