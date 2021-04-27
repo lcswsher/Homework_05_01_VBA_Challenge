@@ -8,3 +8,4 @@ Deleted excel files not needed for homework submission
 Merged origin main and origin head also also added Last Row Calculation, Dim, and Columns
 Added VBA for columns I ticker and L stock volume by workbook, sucessful test by worksheet and workbook
 Added VBA code for columns J Yearly Change and columns K percent change.  Also, format has been added for col J Yearly Change. 
+Added VBA code for columns headers only - for columns O P and Q.  
