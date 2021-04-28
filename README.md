@@ -10,3 +10,4 @@ Added VBA for columns I ticker and L stock volume by workbook, sucessful test by
 Added VBA code for columns J Yearly Change and columns K percent change.  Also, format has been added for col J Yearly Change. 
 Added VBA code for columns headers only - for columns O P and Q.
 VBA correction for colums O, P, Q.  Also, added calculations for greatest increase / decrease for vols, and ticker price for each worksheet
+VBA correction for Volume summation.  Testing revealed that Open and Close prices and percentages are not picked up correcting - correction pending.  
