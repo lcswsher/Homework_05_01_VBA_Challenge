@@ -11,3 +11,4 @@ Added VBA code for columns J Yearly Change and columns K percent change.  Also, 
 Added VBA code for columns headers only - for columns O P and Q.
 VBA correction for colums O, P, Q.  Also, added calculations for greatest increase / decrease for vols, and ticker price for each worksheet
 VBA correction for Volume summation.  Testing revealed that Open and Close prices and percentages are not picked up correcting - correction pending.  
+VBA coding was corrected for incorrect openprice calculation. Net price and percent increase and decrease calculations have been updated.
