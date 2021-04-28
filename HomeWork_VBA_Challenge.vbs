@@ -105,7 +105,9 @@ LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
                        
         'increment 1 for SummaryTableRow and OpeningPriceNumber
         SummaryTableRow = SummaryTableRow + 1
-        OpeningPriceNumber = OpeningPriceNumber + 1
+        
+        'Need to add the i count value to the opening price count to capture first price for stockticker
+        OpeningPriceNumber = i + 1
                 
     End If
 
