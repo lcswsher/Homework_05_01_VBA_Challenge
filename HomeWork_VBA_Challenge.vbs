@@ -12,9 +12,11 @@ ws.Range("L1") = "Total Stock Volume"
 'To create Column Headers for Greatest increase, Greatest decrease, and Greatest Total volume
 ws.Range("O2") = "Greatest % Increase"
 ws.Range("O3") = "Greatest % Decrease"
-ws.Range("O4") = "Greatest total volume"
+ws.Range("O4") = "Greatest Total volume"
+ws.Range("P1") = "Ticker"
+ws.Range("Q1") = "Value"
 
-'To Assign variables as either string or long
+'To Assign variables as either string long or Double
 Dim StockTicker As String
 Dim YearlyChange As Long
 Dim PercentChange As Double
@@ -23,6 +25,7 @@ Dim SummaryTableRow As Long
 Dim OpenPrice As Double
 Dim ClosePrice As Double
 Dim ChangePrice As Double
+Dim LastRow As Long
 
 'To Assign variable for first opening ticker price
 Dim OpeningPriceNumber As Long
@@ -38,6 +41,7 @@ SummaryTableRow = 2
 'Summary row starts at two and for each i loop will add a 1 count to the OpenPriceNumber
 OpeningPriceNumber = 2
 
+
 'Calculates what the last row number in Column A is.
 LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
 
@@ -49,7 +53,7 @@ LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
     TotalStockVolume = TotalStockVolume + ws.Cells(i, 7).Value
     
     'On change of Stock Ticker in Column A retrieve the ticker symbols in the sheet in column I
-    If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+    If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
                
         'Set the StockTickerName
         StockTicker = ws.Cells(i, 1).Value
@@ -86,10 +90,18 @@ LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
                     
             End If
         
-        'Percent Change calculation
-        PercentChange = ChangePrice / OpenPrice
-        ws.Range("K" & SummaryTableRow).Value = PercentChange
-        ws.Range("K" & SummaryTableRow).NumberFormat = "0.00%"
+            'Percent Change calculation
+            If OpenPrice = 0 Then
+               PercentChange = 0
+            Else
+               OpenPrice = ws.Range("C" & OpeningPriceNumber)
+               PercentChange = ChangePrice / OpenPrice
+            
+               ws.Range("K" & SummaryTableRow).Value = PercentChange
+               ws.Range("K" & SummaryTableRow).NumberFormat = "0.00%"
+
+            End If
+        
                        
         'increment 1 for SummaryTableRow and OpeningPriceNumber
         SummaryTableRow = SummaryTableRow + 1
@@ -99,19 +111,34 @@ LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
 
     Next i
 
-    LastRow = ws.Cells(Rows.Count, 9).End(xlUp).Row
+    LastRow = ws.Cells(Rows.Count, 11).End(xlUp).Row
 
-    For i = 2 to LastRow
-        if ws.range("K" & i) > ws.range()
-
-
-
-
-
+    For i = 2 To LastRow
+         If ws.Range("K" & i).Value > ws.Range("Q2").Value Then
+            ws.Range("Q2").Value = ws.Range("K" & i).Value
+            ws.Range("P2").Value = ws.Range("I" & i).Value
+         End If
+         
+         If ws.Range("K" & i).Value < ws.Range("Q3").Value Then
+            ws.Range("Q3").Value = ws.Range("K" & i).Value
+            ws.Range("P3").Value = ws.Range("I" & i).Value
+         End If
+                              
+         If ws.Range("L" & i).Value > ws.Range("Q4").Value Then
+            ws.Range("Q4").Value = ws.Range("L" & i).Value
+            ws.Range("P4").Value = ws.Range("I" & i).Value
+         End If
+                              
     Next i
 
+'To properly fit data values into columns and to format number/percentages and center text
+
     ws.Columns("I:Q").AutoFit
-        
+    ws.Range("Q2").NumberFormat = "0.00%"
+    ws.Range("Q3").NumberFormat = "0.00%"
+    ws.Range("Q4").NumberFormat = "0"
+    ws.Range("Q1").HorizontalAlignment = xlCenter
+            
 Next ws
     
 End Sub
